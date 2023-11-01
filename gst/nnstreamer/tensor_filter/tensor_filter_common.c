@@ -1282,6 +1282,9 @@ gst_tensor_filter_detect_framework (const gchar * const *model_files,
     else if ((g_str_equal (ext[0], ".so") && g_str_equal (ext[1], ".nb")) ||
         (g_str_equal (ext[1], ".so") && g_str_equal (ext[0], ".nb")))
       detected_fw = g_strdup ("vivante");
+    else if ((g_str_equal (ext[0], ".param") && g_str_equal (ext[1], ".bin")) ||
+        (g_str_equal (ext[1], ".param") && g_str_equal (ext[0], ".bin")))
+      detected_fw = g_strdup ("swift_yolo");
   } else {
     nns_logw ("Invalid number of model files.");
   }
