@@ -458,6 +458,7 @@ TorchCore::serializeOutput (const torch::jit::IValue &value,
           *idx);
       return -2;
     }
+
     (*idx)++;
   } else if (value.isTuple ()) {
     auto output_elements = value.toTuple ()->elements ();

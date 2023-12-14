@@ -203,6 +203,7 @@ YolosCore::invoke (const GstTensorFilterProperties *prop,
     in_pad = ncnn::Mat::from_pixels_resize(input[i].data, ncnn::Mat::PIXEL_RGB2BGR, input_shape[0], input_shape[1], input_shape[0], input_shape[1]);
     ex.input("images", in_pad);
     ex.extract("output", out);
+    // g_assert (out->bytes == output[i].size);
     memcpy (output[i].data, out, output[i].size);
   }
   return 0;

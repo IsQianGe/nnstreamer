@@ -9,7 +9,7 @@ project('nnstreamer', 'c', 'cpp',
     'werror=true',
     'warning_level=2',
     'c_std=gnu89',
-    'cpp_std=c++14'
+    'cpp_std=c++17'
   ]
 )
 
@@ -441,6 +441,10 @@ features = {
   'tensorrt-support': {
     'extra_deps': [ nvinfer_dep, nvparsers_dep, cuda_dep, cudart_dep ],
     'project_args': { 'ENABLE_TENSORRT': 1 }
+  },
+  'yolos-support': {
+    'target': 'swift-yolo',
+    'project_args': { 'ENABLE_SWIFT_YOLO': 1 }
   },
   'grpc-support': {
     'extra_deps': [ grpc_dep, gpr_dep, grpcpp_dep ],

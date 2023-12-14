@@ -756,6 +756,13 @@ NNStreamer's datareposrc/sink plugins for reading and writing files in MLOps Dat
 %define enable_armnn -Darmnn-support=disabled
 %endif
 
+# Support swift-yolo
+%if 0%{?swift-yolo_support}
+%define enable_yolos -Dyolos-support=enabled
+%else
+%define enable_yolos -Dyolos-support=disabled
+%endif
+
 # Support python
 %if 0%{?python3_support}
 %define enable_python3 -Dpython3-support=enabled
@@ -872,7 +879,7 @@ mkdir -p %{builddir}
 meson --buildtype=plain --prefix=%{_prefix} --sysconfdir=%{_sysconfdir} --libdir=%{_lib} \
 	--bindir=%{nnstbindir} --includedir=include -Dsubplugindir=%{_prefix}/lib/nnstreamer \
 	%{enable_tizen} %{element_restriction} %{fw_priority} -Denable-env-var=false -Denable-symbolic-link=false \
-	%{enable_tf_lite} %{enable_tf2_lite} %{enable_tf} %{enable_pytorch} %{enable_caffe2} %{enable_python3} \
+	%{enable_tf_lite} %{enable_tf2_lite} %{enable_tf} %{enable_pytorch} %{enable_caffe2} %{enable_yolos} %{enable_python3} \
 	%{enable_nnfw_runtime} %{enable_mvncsdk2} %{enable_openvino} %{enable_armnn} %{enable_edgetpu}  %{enable_vivante} \
 	%{enable_flatbuf} %{enable_trix_engine} %{enable_datarepo} \
 	%{enable_tizen_sensor} %{enable_mqtt} %{enable_lua} %{enable_tvm} %{enable_test} %{enable_test_coverage} %{install_test} \
